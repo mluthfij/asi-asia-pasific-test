@@ -5,7 +5,7 @@
     <p>Is Project: <%= my_client.is_project %></p>
     <p>Self Capture: <%= my_client.self_capture %></p>
     <p>Client Prefix: <%= my_client.client_prefix %></p>
-    <p>Client Logo: <%= my_client.client_logo %></p>
+    <p>Client Logo: <%= image_tag my_client.client_logo, alt: "Clinet Logo", size: "100x100" if my_client.client_logo.attached? %></p>
     <p>Phone Number: <%= my_client.phone_number %></p>
     <p>Address: <%= my_client.address %></p>
     <p>city: <%= my_client.city %></p>
