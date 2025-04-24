@@ -25,6 +25,7 @@ class MyClientsController < ApplicationController
 
     respond_to do |format|
       if @my_client.save
+        $redis.set(@my_client.slug, @my_client)
         format.html { redirect_to @my_client, notice: "My client was successfully created." }
         format.json { render :show, status: :created, location: @my_client }
       else
@@ -36,8 +37,14 @@ class MyClientsController < ApplicationController
 
   # PATCH/PUT /my_clients/1 or /my_clients/1.json
   def update
+    old_slug = @my_client.slug
+
     respond_to do |format|
       if @my_client.update(my_client_params)
+        $redis.del(old_slug) if old_slug != @my_client.slug
+
+        $redis.set(@my_client.slug, @my_client)
+
         format.html { redirect_to @my_client, notice: "My client was successfully updated." }
         format.json { render :show, status: :ok, location: @my_client }
       else
@@ -49,9 +56,10 @@ class MyClientsController < ApplicationController
 
   # DELETE /my_clients/1 or /my_clients/1.json
   def destroy
-    @my_client.destroy!
-
     respond_to do |format|
+      @my_client.update_attribute(:deleted_at, Time.current)
+      $redis.del(@my_client.slug)
+
       format.html { redirect_to my_clients_path, status: :see_other, notice: "My client was successfully destroyed." }
       format.json { head :no_content }
     end
