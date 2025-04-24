@@ -60,7 +60,7 @@ class MyClientsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_my_client
-      @my_client = MyClient.find(params[:id])
+      @my_client = MyClient.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
