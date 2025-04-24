@@ -12,6 +12,51 @@
   <% end %>
 
   <div>
+    <%= form.label :name %>
+    <%= form.text_field :name, value: my_client.name, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :slug %>
+    <%= form.text_field :slug, value: my_client.slug, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :is_project %>
+    <%= form.text_field :is_project, value: my_client.is_project, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :self_capture %>
+    <%= form.text_field :self_capture, value: my_client.self_capture, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :client_prefix %>
+    <%= form.text_field :client_prefix, value: my_client.client_prefix, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :client_logo %>
+    <%= form.file_field :client_logo %>
+  </div>
+
+  <div>
+    <%= form.label :phone_number %>
+    <%= form.telephone_field :phone_number, value: my_client.phone_number, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address, value: my_client.address, required: true %>
+  </div>
+
+  <div>
+    <%= form.label :city %>
+    <%= form.text_field :city, value: my_client.city, required: true %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
