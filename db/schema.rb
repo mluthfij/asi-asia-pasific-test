@@ -10,8 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2025_04_24_043039) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "my_clients", force: :cascade do |t|
+    t.string "name", limit: 250, null: false
+    t.string "slug", limit: 100, null: false
+    t.string "is_project", limit: 30, default: "0", null: false
+    t.string "self_capture", limit: 1, default: "1", null: false
+    t.string "client_prefix", limit: 4, null: false
+    t.string "client_logo", limit: 255, default: "no-image.jpg", null: false
+    t.text "address"
+    t.string "phone_number", limit: 50
+    t.string "city", limit: 50
+    t.datetime "created_at", precision: 0, null: false
+    t.datetime "updated_at", precision: 0, null: false
+    t.datetime "deleted_at", precision: 0
+  end
 
 end

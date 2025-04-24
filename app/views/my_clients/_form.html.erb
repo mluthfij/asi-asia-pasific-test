@@ -1,0 +1,17 @@
+<%= form_with(model: my_client) do |form| %>
+  <% if my_client.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(my_client.errors.count, "error") %> prohibited this my_client from being saved:</h2>
+
+      <ul>
+        <% my_client.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>My clients</h1>
+
+<div id="my_clients">
+  <% @my_clients.each do |my_client| %>
+    <%= render my_client %>
+    <p>
+      <%= link_to "Show this my client", my_client %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New my client", new_my_client_path %>
